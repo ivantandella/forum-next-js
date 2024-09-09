@@ -19,7 +19,7 @@ export default function IndexPage() {
         mt={120}
         mb={20}
       >
-        <Title order={3}>Top Category</Title>
+        <Title order={3}>Trending🔥</Title>
         <Flex direction={"row"} gap={"md"}>
           <Button variant="outline" color="gray">
             #abc
@@ -37,7 +37,7 @@ export default function IndexPage() {
         align={"center"}
         mb={80}
       >
-        <Card withBorder mb={10} w={400}>
+        <Card withBorder mb={10} w={400} shadow="sm">
           <Flex direction={"row"} justify={"space-between"} align={"center"}>
             <Group my={10} gap={"xs"}>
               <IconUserCircle /> Ivan
@@ -58,7 +58,7 @@ export default function IndexPage() {
             </Group>
           </Group>
         </Card>
-        <Card withBorder mb={10} w={400}>
+        <Card withBorder mb={10} w={400} shadow="sm">
           <Flex direction={"row"} justify={"space-between"} align={"center"}>
             <Group my={10} gap={"xs"}>
               <IconUserCircle /> Ivan
@@ -79,7 +79,7 @@ export default function IndexPage() {
             </Group>
           </Group>
         </Card>
-        <Card withBorder mb={10} w={400}>
+        <Card withBorder mb={10} w={400} shadow="sm">
           <Flex direction={"row"} justify={"space-between"} align={"center"}>
             <Group my={10} gap={"xs"}>
               <IconUserCircle /> Ivan

@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <Flex
       style={{
-        backgroundImage: `linear-gradient(to bottom, ${PRIMARY_COLOR_1}, ${PRIMARY_COLOR_2})`,
+        backgroundImage: `linear-gradient(to top, ${PRIMARY_COLOR_1}, ${PRIMARY_COLOR_2})`,
       }}
       w={"100%"}
       h={70}
@@ -25,13 +25,13 @@ export default function Navbar() {
       <NavMenu name="Home" href="/">
         <IconHome />
       </NavMenu>
-      <NavMenu name="Community" href="/">
+      <NavMenu name="Community" href="/community">
         <IconSocial />
       </NavMenu>
       <NavMenu name="Add Thread" href="/">
         <IconPlus />
       </NavMenu>
-      <NavMenu name="Leaderboard" href="/">
+      <NavMenu name="Leaderboard" href="/leaderboard">
         <IconAward />
       </NavMenu>
       <NavMenu name="Account" href="/">
