@@ -9,11 +9,12 @@ import {
   Title,
 } from "@mantine/core";
 import { PRIMARY_COLOR_1, PRIMARY_COLOR_2 } from "../../utils/constants";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
     <Flex justify={"center"} align={"center"} mih={"100vh"} bg={"gray"}>
-      <Card withBorder radius={"md"} w={"30%"}>
+      <Card withBorder radius={"md"} w={"30%"} my={10}>
         <form>
           <Flex direction={"column"} gap={"md"} align={"center"}>
             <Image
@@ -24,7 +25,9 @@ export default function LoginPage() {
               radius={"100%"}
             />
             <Title>Login</Title>
-            <Text size="sm">Don't have an account? Sign up</Text>
+            <Text size="sm">
+              Don't have an account? <Link href="/register">Register</Link>
+            </Text>
             <TextInput
               label="Email"
               placeholder="example@mail.com"
