@@ -2,6 +2,7 @@ import { Flex, Title } from "@mantine/core";
 import Navbar from "../../components/navbar";
 import UserCard from "../../components/users-card";
 import { useGetAllUsers } from "../../api-hooks/auth/query";
+import { UserType } from "../../api-hooks/auth/model";
 
 export default function CommunityPage() {
   const { data } = useGetAllUsers();
@@ -17,7 +18,7 @@ export default function CommunityPage() {
         mb={80}
       >
         <Title>Community</Title>
-        {data.data.users.map((user) => (
+        {data.data.users.map((user: UserType) => (
           <UserCard
             key={user.id}
             name={user.name}
