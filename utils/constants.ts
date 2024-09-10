@@ -13,3 +13,5 @@ export const REGISTER_PATH = "/register";
 export const COMMUNITY_PATH = "/community";
 export const LEADERBOARDS_PATH = "/leaderboard";
 export const PROFILE_PATH = "/profile";
+export const THREAD_PATH = "/threads";
+export const DETAIL_THREAD_PATH = "/threads/:id";

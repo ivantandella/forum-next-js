@@ -6,6 +6,7 @@ import {
   PRIMARY_COLOR_1,
   PRIMARY_COLOR_2,
   PROFILE_PATH,
+  THREAD_PATH,
 } from "../utils/constants";
 import IconHome from "./icons/icon-home";
 import NavMenu from "./nav-menu";
@@ -35,7 +36,7 @@ export default function Navbar() {
       <NavMenu name="Community" href={COMMUNITY_PATH}>
         <IconSocial />
       </NavMenu>
-      <NavMenu name="Add Thread" href="/">
+      <NavMenu name="Add Thread" href={THREAD_PATH}>
         <IconPlus />
       </NavMenu>
       <NavMenu name="Leaderboard" href={LEADERBOARDS_PATH}>

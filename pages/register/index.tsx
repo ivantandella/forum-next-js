@@ -52,7 +52,7 @@ export default function RegisterPage() {
 
       notifications.show({
         title: response.status.toUpperCase(),
-        message: response.message,
+        message: `${response.message}, please login`,
         position: "top-right",
         autoClose: 5000,
         color: SUCCESS_COLOR,
@@ -61,7 +61,7 @@ export default function RegisterPage() {
       console.error(error);
       notifications.show({
         title: error.response.data.status.toUpperCase(),
-        message: `${error.response.data.message}, please login`,
+        message: error.response.data.message,
         position: "top-right",
         autoClose: 5000,
         color: DANGER_COLOR,

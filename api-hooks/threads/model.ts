@@ -13,3 +13,9 @@ export type ThreadType = {
 export type GetThreadsResultType = {
   threads: ThreadType[];
 };
+
+export type CreateThreadInputType = {
+  title: string;
+  body: string;
+  category: string;
+};
