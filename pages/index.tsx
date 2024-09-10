@@ -12,7 +12,7 @@ export default function IndexPage() {
   const threadsData: ThreadType[] = data?.data?.threads || [];
   const { search } = useContext(SearchContext);
 
-  const filteredThreads = threadsData.filter((thread) =>
+  let filteredThreads = threadsData.filter((thread) =>
     thread.title.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -20,7 +20,7 @@ export default function IndexPage() {
     <div style={{ minHeight: "100vh" }}>
       <Header />
 
-      <Flex
+      {/* <Flex
         direction={"column"}
         gap={"md"}
         justify={"center"}
@@ -36,7 +36,7 @@ export default function IndexPage() {
             </Button>
           ))}
         </Flex>
-      </Flex>
+      </Flex> */}
 
       <Flex
         direction={"column"}
@@ -44,6 +44,7 @@ export default function IndexPage() {
         justify={"center"}
         align={"center"}
         mb={80}
+        mt={120}
       >
         {isLoading && <Loader />}
         {filteredThreads.map((thread) => (

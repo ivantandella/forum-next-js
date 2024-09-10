@@ -5,13 +5,12 @@ import { useGetAllUsers } from "../../api-hooks/auth/query";
 import { UserType } from "../../api-hooks/auth/model";
 import { paginate } from "../../utils/paginate";
 import IconSearch from "../../components/icons/icon-search";
-import { useContext } from "react";
-import { SearchContext } from "../../contexts/search-context";
+import { useState } from "react";
 
 export default function CommunityPage() {
   const { data, isLoading } = useGetAllUsers();
   const usersData: UserType[] = paginate(data?.data?.users || [], 100, 1);
-  const { search, setSearch } = useContext(SearchContext);
+  const [search, setSearch] = useState<string>("");
 
   const filteredUsers = usersData.filter((user) => {
     return user.name.toLowerCase().includes(search.toLowerCase());
