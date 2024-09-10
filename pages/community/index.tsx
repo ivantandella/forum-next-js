@@ -1,8 +1,11 @@
 import { Flex, Title } from "@mantine/core";
 import Navbar from "../../components/navbar";
 import UserCard from "../../components/users-card";
+import { useGetAllUsers } from "../../api-hooks/auth/query";
 
 export default function CommunityPage() {
+  const { data } = useGetAllUsers();
+
   return (
     <div style={{ minHeight: "100vh" }}>
       <Flex
@@ -14,31 +17,14 @@ export default function CommunityPage() {
         mb={80}
       >
         <Title>Community</Title>
-        <UserCard
-          name="John Doe"
-          mail="john@mail.com"
-          avatar="/forum-logo.png"
-        />
-        <UserCard
-          name="John Doe"
-          mail="john@mail.com"
-          avatar="/forum-logo.png"
-        />
-        <UserCard
-          name="John Doe"
-          mail="john@mail.com"
-          avatar="/forum-logo.png"
-        />
-        <UserCard
-          name="John Doe"
-          mail="john@mail.com"
-          avatar="/forum-logo.png"
-        />
-        <UserCard
-          name="John Doe"
-          mail="john@mail.com"
-          avatar="/forum-logo.png"
-        />
+        {data.data.users.map((user) => (
+          <UserCard
+            key={user.id}
+            name={user.name}
+            mail={user.email}
+            avatar={user.avatar}
+          />
+        ))}
       </Flex>
 
       <Navbar />
