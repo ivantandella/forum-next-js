@@ -1,5 +1,12 @@
 import { Flex } from "@mantine/core";
-import { PRIMARY_COLOR_1, PRIMARY_COLOR_2 } from "../utils/constants";
+import {
+  COMMUNITY_PATH,
+  HOME_PATH,
+  LEADERBOARDS_PATH,
+  PRIMARY_COLOR_1,
+  PRIMARY_COLOR_2,
+  PROFILE_PATH,
+} from "../utils/constants";
 import IconHome from "./icons/icon-home";
 import NavMenu from "./nav-menu";
 import IconUser from "./icons/icon-user";
@@ -22,19 +29,19 @@ export default function Navbar() {
       justify={"center"}
       align={"center"}
     >
-      <NavMenu name="Home" href="/">
+      <NavMenu name="Home" href={HOME_PATH}>
         <IconHome />
       </NavMenu>
-      <NavMenu name="Community" href="/community">
+      <NavMenu name="Community" href={COMMUNITY_PATH}>
         <IconSocial />
       </NavMenu>
       <NavMenu name="Add Thread" href="/">
         <IconPlus />
       </NavMenu>
-      <NavMenu name="Leaderboard" href="/leaderboard">
+      <NavMenu name="Leaderboard" href={LEADERBOARDS_PATH}>
         <IconAward />
       </NavMenu>
-      <NavMenu name="Account" href="/">
+      <NavMenu name="Account" href={PROFILE_PATH}>
         <IconUser />
       </NavMenu>
     </Flex>

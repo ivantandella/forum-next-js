@@ -8,13 +8,21 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
-import { PRIMARY_COLOR_1, PRIMARY_COLOR_2 } from "../../utils/constants";
+import {
+  DANGER_COLOR,
+  HOME_PATH,
+  PRIMARY_COLOR_1,
+  PRIMARY_COLOR_2,
+  REGISTER_PATH,
+  SUCCESS_COLOR,
+} from "../../utils/constants";
 import Link from "next/link";
 import * as Yup from "yup";
 import { useForm, yupResolver } from "@mantine/form";
 import { useLogin } from "../../api-hooks/auth/mutation";
 import { LoginDataType } from "../../api-hooks/auth/model";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { notifications } from "@mantine/notifications";
 
 export default function LoginPage() {
   const { mutateAsync, isPending } = useLogin();
@@ -35,17 +43,30 @@ export default function LoginPage() {
     validate: yupResolver(schema),
   });
 
-  function handleSubmitLogin(values: LoginDataType) {
-    mutateAsync(values, {
-      onSuccess: (response) => {
-        localStorage.setItem("token", response.data.token);
-        form.reset();
-        push("/");
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    });
+  async function handleSubmitLogin(values: LoginDataType) {
+    try {
+      const response = await mutateAsync(values);
+      localStorage.setItem("token", response.data.token);
+      form.reset();
+      push(HOME_PATH);
+
+      notifications.show({
+        title: response.status.toUpperCase(),
+        message: response.message,
+        position: "top-right",
+        autoClose: 5000,
+        color: SUCCESS_COLOR,
+      });
+    } catch (error: any) {
+      console.error(error);
+      notifications.show({
+        title: error.response.data.status.toUpperCase(),
+        message: error.response.data.message,
+        position: "top-right",
+        autoClose: 5000,
+        color: DANGER_COLOR,
+      });
+    }
   }
 
   return (
@@ -62,7 +83,7 @@ export default function LoginPage() {
             />
             <Title>Login</Title>
             <Text size="sm">
-              Don't have an account? <Link href="/register">Register</Link>
+              Don't have an account? <Link href={REGISTER_PATH}>Register</Link>
             </Text>
             <TextInput
               label="Email"
