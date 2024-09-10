@@ -1,12 +1,21 @@
-import { Button, Card, Flex, Group, Text, Title } from "@mantine/core";
+import { Button, Card, Flex, Group, Loader, Text, Title } from "@mantine/core";
 import Navbar from "../components/navbar";
 import Header from "../components/header";
-import IconUserCircle from "../components/icons/icon-user-circle";
-import IconThumbUp from "../components/icons/icon-thumb-up";
-import IconThumbDown from "../components/icons/icon-thumb-down";
-import IconMessage from "../components/icons/icon-message";
+import ThreadsCard from "../components/threads-card";
+import { useGetAllThreads } from "../api-hooks/threads/query";
+import { ThreadType } from "../api-hooks/threads/model";
+import { useContext } from "react";
+import { SearchContext } from "../contexts/search-context";
 
 export default function IndexPage() {
+  const { data, isLoading } = useGetAllThreads();
+  const threadsData: ThreadType[] = data?.data?.threads || [];
+  const { search } = useContext(SearchContext);
+
+  const filteredThreads = threadsData.filter((thread) =>
+    thread.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div style={{ minHeight: "100vh" }}>
       <Header />
@@ -21,12 +30,11 @@ export default function IndexPage() {
       >
         <Title order={3}>Trending🔥</Title>
         <Flex direction={"row"} gap={"md"}>
-          <Button variant="outline" color="gray">
-            #abc
-          </Button>
-          <Button variant="outline" color="gray">
-            #abc
-          </Button>
+          {threadsData.map((thread) => (
+            <Button variant="outline" color="gray" key={thread.id}>
+              #{thread.category}
+            </Button>
+          ))}
         </Flex>
       </Flex>
 
@@ -37,69 +45,10 @@ export default function IndexPage() {
         align={"center"}
         mb={80}
       >
-        <Card withBorder mb={10} w={400} shadow="sm">
-          <Flex direction={"row"} justify={"space-between"} align={"center"}>
-            <Group my={10} gap={"xs"}>
-              <IconUserCircle /> Ivan
-            </Group>
-            <Text size="sm">12/02/2022</Text>
-          </Flex>
-          <Title order={4}>Forum</Title>
-          <Text>Forum description</Text>
-          <Group mt={20}>
-            <Group gap={2}>
-              <IconThumbUp /> 0
-            </Group>
-            <Group gap={2}>
-              <IconThumbDown /> 0
-            </Group>
-            <Group gap={2}>
-              <IconMessage /> 0
-            </Group>
-          </Group>
-        </Card>
-        <Card withBorder mb={10} w={400} shadow="sm">
-          <Flex direction={"row"} justify={"space-between"} align={"center"}>
-            <Group my={10} gap={"xs"}>
-              <IconUserCircle /> Ivan
-            </Group>
-            <Text size="sm">12/02/2022</Text>
-          </Flex>
-          <Title order={4}>Forum</Title>
-          <Text>Forum description</Text>
-          <Group mt={20}>
-            <Group gap={2}>
-              <IconThumbUp /> 0
-            </Group>
-            <Group gap={2}>
-              <IconThumbDown /> 0
-            </Group>
-            <Group gap={2}>
-              <IconMessage /> 0
-            </Group>
-          </Group>
-        </Card>
-        <Card withBorder mb={10} w={400} shadow="sm">
-          <Flex direction={"row"} justify={"space-between"} align={"center"}>
-            <Group my={10} gap={"xs"}>
-              <IconUserCircle /> Ivan
-            </Group>
-            <Text size="sm">12/02/2022</Text>
-          </Flex>
-          <Title order={4}>Forum</Title>
-          <Text>Forum description</Text>
-          <Group mt={20}>
-            <Group gap={2}>
-              <IconThumbUp /> 0
-            </Group>
-            <Group gap={2}>
-              <IconThumbDown /> 0
-            </Group>
-            <Group gap={2}>
-              <IconMessage /> 0
-            </Group>
-          </Group>
-        </Card>
+        {isLoading && <Loader />}
+        {filteredThreads.map((thread) => (
+          <ThreadsCard key={thread.id} data={thread} />
+        ))}
       </Flex>
 
       <Navbar />

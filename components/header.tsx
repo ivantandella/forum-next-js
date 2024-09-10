@@ -1,7 +1,11 @@
 import { Flex, TextInput, Title } from "@mantine/core";
 import IconSearch from "./icons/icon-search";
+import { useContext } from "react";
+import { SearchContext } from "../contexts/search-context";
 
 export default function Header() {
+  const { search, setSearch } = useContext(SearchContext);
+
   return (
     <Flex
       direction={"column"}
@@ -21,6 +25,8 @@ export default function Header() {
         rightSection={<IconSearch />}
         rightSectionPointerEvents="none"
         w={400}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
     </Flex>
   );
