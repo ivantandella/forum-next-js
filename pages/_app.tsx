@@ -8,8 +8,7 @@ import SearchContextProvider from "../contexts/search-context";
 import "@mantine/notifications/styles.css";
 import { Notifications } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
-
-const queryClient = new QueryClient();
+import { queryClient } from "../utils/constants";
 
 export default function App({ Component, pageProps }: any) {
   return (

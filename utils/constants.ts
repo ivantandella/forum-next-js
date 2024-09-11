@@ -1,3 +1,5 @@
+import { QueryClient } from "@tanstack/react-query";
+
 export const PRIMARY_COLOR_1 = "#50428C";
 export const PRIMARY_COLOR_2 = "#3783B2";
 
@@ -15,3 +17,5 @@ export const LEADERBOARDS_PATH = "/leaderboard";
 export const PROFILE_PATH = "/profile";
 export const THREAD_PATH = "/threads";
 export const DETAIL_THREAD_PATH = "/threads/:id";
+
+export const queryClient = new QueryClient();

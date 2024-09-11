@@ -5,8 +5,8 @@ export type ThreadType = {
   category: string;
   createdAt: string;
   ownerId: string;
-  upVotesBy: never[];
-  downVotesBy: never[];
+  upVotesBy: string[];
+  downVotesBy: string[];
   totalComments: number;
 };
 
@@ -50,3 +50,9 @@ export type DetailThreadType = {
 export type CommentInputType = {
   content: string;
 };
+
+export enum VoteTypeEnum {
+  UP = "up-vote",
+  DOWN = "down-vote",
+  NEUTRAL = "neutral-vote",
+}

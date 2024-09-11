@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../../utils/constants";
 import { useQuery } from "@tanstack/react-query";
 
-const threadsKey = {
+export const threadsKey = {
   getAllThreadsKey: ["get-threads"],
   getDetailThreadKey: (id: string) => ["get-detail-thread", id],
 };

@@ -1,14 +1,13 @@
 import { useRouter } from "next/router";
 import Navbar from "../../components/navbar";
 import { Card, Flex, Group, Loader, Text, Title } from "@mantine/core";
-import IconThumbDown from "../../components/icons/icon-thumb-down";
-import IconThumbUp from "../../components/icons/icon-thumb-up";
 import { useGetDetailThread } from "../../api-hooks/threads/query";
 import { timeAgo } from "../../utils/date";
 import { DetailThreadType } from "../../api-hooks/threads/model";
 import CommentCard from "../../components/comment-card";
 import Author from "../../components/author";
 import CommentForm from "../../components/comment-form";
+import ThreadAction from "../../components/thread-action";
 
 export default function DetailThread() {
   const { query } = useRouter();
@@ -46,13 +45,13 @@ export default function DetailThread() {
               <Text>
                 <div dangerouslySetInnerHTML={{ __html: threadData.body }} />
               </Text>
+
               <Group my={20}>
-                <Group gap={2}>
-                  <IconThumbUp /> {threadData.upVotesBy.length || "0"}
-                </Group>
-                <Group gap={2}>
-                  <IconThumbDown /> {threadData.downVotesBy.length || "0"}
-                </Group>
+                <ThreadAction
+                  id={id}
+                  upVotesBy={threadData.upVotesBy}
+                  downVotesBy={threadData.downVotesBy}
+                />
               </Group>
               <CommentForm threadId={threadData.id} />
             </Card>
