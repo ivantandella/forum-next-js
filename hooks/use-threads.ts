@@ -11,6 +11,7 @@ import {
 } from "../utils/constants";
 import { threadsKey } from "../api-hooks/threads/query";
 import { useAuth } from "./auth";
+import { useGetMe } from "../api-hooks/auth/query";
 
 export function useThreads(id: string) {
   const { mutateAsync, isPending } = useVoteThread(id);
@@ -18,8 +19,13 @@ export function useThreads(id: string) {
   const [fillThumbDown, setFillThumbDown] = useState("none");
   const { isLogin } = useAuth();
 
+  const me = useGetMe();
+  const myId = me.data?.data?.user?.id;
+
   async function handleUpVote() {
     isLogin();
+    if (!myId) return;
+
     try {
       const response = await mutateAsync(VoteTypeEnum.UP);
       setFillThumbUp(PRIMARY_COLOR_2);
@@ -56,6 +62,7 @@ export function useThreads(id: string) {
   async function handleDownVote() {
     // const queryData = queryClient.getQueryData(threadsKey.getAllThreadsKey);
     isLogin();
+    if (!myId) return;
     try {
       const response = await mutateAsync(VoteTypeEnum.DOWN);
       setFillThumbDown(PRIMARY_COLOR_1);
@@ -92,6 +99,7 @@ export function useThreads(id: string) {
 
   async function handleNeutralVote() {
     isLogin();
+    if (!myId) return;
     try {
       const response = await mutateAsync(VoteTypeEnum.NEUTRAL);
       setFillThumbUp("none");

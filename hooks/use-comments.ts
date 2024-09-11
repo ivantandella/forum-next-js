@@ -39,6 +39,7 @@ export function useComment(threadId: string, comment: CommentType) {
 
   async function handleUpVote() {
     isLogin();
+    if (!myId) return;
     try {
       const response = await mutateAsync(VoteTypeEnum.UP);
       setCommentThumbUp(PRIMARY_COLOR_2);
@@ -70,6 +71,7 @@ export function useComment(threadId: string, comment: CommentType) {
 
   async function handleDownVote() {
     isLogin();
+    if (!myId) return;
     try {
       const response = await mutateAsync(VoteTypeEnum.DOWN);
       setCommentThumbDown(PRIMARY_COLOR_1);
@@ -105,6 +107,7 @@ export function useComment(threadId: string, comment: CommentType) {
 
   async function handleNeutralVote() {
     isLogin();
+    if (!myId) return;
     try {
       const response = await mutateAsync(VoteTypeEnum.NEUTRAL);
       setCommentThumbUp("none");
