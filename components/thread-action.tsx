@@ -4,6 +4,7 @@ import IconThumbDown from "./icons/icon-thumb-down";
 import { useThreads } from "../hooks/use-threads";
 import { useGetMe } from "../api-hooks/auth/query";
 import { useEffect } from "react";
+import { PRIMARY_COLOR_1, PRIMARY_COLOR_2 } from "../utils/constants";
 
 type ThreadActionPropsType = {
   id: string;
@@ -31,12 +32,12 @@ export default function ThreadAction(props: ThreadActionPropsType) {
 
   useEffect(() => {
     if (upVoted) {
-      setFillThumbUp("fill");
+      setFillThumbUp(PRIMARY_COLOR_2);
     } else {
       setFillThumbUp("none");
     }
     if (downVoted) {
-      setFillThumbDown("fill");
+      setFillThumbDown(PRIMARY_COLOR_1);
     } else {
       setFillThumbDown("none");
     }

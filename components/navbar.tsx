@@ -16,6 +16,11 @@ import IconAward from "./icons/icon-award";
 import IconPlus from "./icons/icon-plus";
 
 export default function Navbar() {
+  // const menus = [{
+  //   icon: <IconHome />,
+  //   href: HOME_PATH,
+  //   name:"Home"
+  // }]
   return (
     <Flex
       style={{
