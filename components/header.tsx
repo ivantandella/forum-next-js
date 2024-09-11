@@ -19,7 +19,7 @@ export default function Header() {
       pb={20}
       style={{ zIndex: 1 }}
     >
-      <Title>Forum App</Title>
+      <Title mt={10}>Forum App</Title>
       <TextInput
         placeholder="Search..."
         rightSection={<IconSearch />}

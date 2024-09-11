@@ -4,7 +4,6 @@ import {
   DANGER_COLOR,
   HOME_PATH,
   LOGIN_PATH,
-  PROFILE_PATH,
   SUCCESS_COLOR,
 } from "../utils/constants";
 import { notifications } from "@mantine/notifications";

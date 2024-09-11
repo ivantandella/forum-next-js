@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const threadsKey = {
   getAllThreadsKey: ["get-threads"],
+  getDetailThreadKey: (id: string) => ["get-detail-thread", id],
 };
 
 async function getAllThreads() {
@@ -11,9 +12,21 @@ async function getAllThreads() {
   return res.data;
 }
 
+async function getDetailThread(id: string) {
+  const res = await axios.get(`${BASE_URL}/threads/${id}`);
+  return res.data;
+}
+
 export function useGetAllThreads() {
   return useQuery({
     queryKey: threadsKey.getAllThreadsKey,
     queryFn: getAllThreads,
+  });
+}
+
+export function useGetDetailThread(id: string) {
+  return useQuery({
+    queryKey: threadsKey.getDetailThreadKey(id),
+    queryFn: () => getDetailThread(id),
   });
 }

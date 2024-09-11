@@ -1,4 +1,4 @@
-import { Button, Card, Flex, Group, Loader, Text, Title } from "@mantine/core";
+import { Flex, Loader } from "@mantine/core";
 import Navbar from "../components/navbar";
 import Header from "../components/header";
 import ThreadsCard from "../components/threads-card";
@@ -44,7 +44,7 @@ export default function IndexPage() {
         justify={"center"}
         align={"center"}
         mb={80}
-        mt={120}
+        mt={130}
       >
         {isLoading && <Loader />}
         {filteredThreads.map((thread) => (

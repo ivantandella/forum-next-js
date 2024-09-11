@@ -109,6 +109,7 @@ export default function AddThread() {
                   deg: 180,
                 }}
                 w={"100%"}
+                loading={isPending}
               >
                 Create
               </Button>
