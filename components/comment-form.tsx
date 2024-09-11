@@ -3,6 +3,7 @@ import {
   DANGER_COLOR,
   PRIMARY_COLOR_1,
   PRIMARY_COLOR_2,
+  queryClient,
   SUCCESS_COLOR,
 } from "../utils/constants";
 import * as Yup from "yup";
@@ -10,8 +11,8 @@ import { useForm, yupResolver } from "@mantine/form";
 import { CommentInputType } from "../api-hooks/threads/model";
 import { useCreateComment } from "../api-hooks/threads/mutation";
 import { notifications } from "@mantine/notifications";
-import { useRouter } from "next/navigation";
 import { getToken } from "../utils/token";
+import { threadsKey } from "../api-hooks/threads/query";
 
 type CommentFormPropsType = {
   threadId: string;
@@ -20,7 +21,6 @@ type CommentFormPropsType = {
 export default function CommentForm(props: CommentFormPropsType) {
   const { threadId } = props;
   const { mutateAsync, isPending } = useCreateComment(threadId);
-  const { refresh } = useRouter();
   const isLogin = getToken();
 
   const schema = Yup.object({
@@ -38,7 +38,18 @@ export default function CommentForm(props: CommentFormPropsType) {
     try {
       const response = await mutateAsync(values);
       form.reset();
-      refresh();
+
+      notifications.show({
+        title: response.status.toUpperCase(),
+        message: response.message,
+        position: "top-right",
+        autoClose: 3000,
+        color: SUCCESS_COLOR,
+      });
+
+      queryClient.refetchQueries({
+        queryKey: threadsKey.getDetailThreadKey(threadId),
+      });
     } catch (error: any) {
       console.error(error);
       notifications.show({

@@ -40,7 +40,7 @@ export default function ThreadAction(props: ThreadActionPropsType) {
     } else {
       setFillThumbDown("none");
     }
-  });
+  }, [upVoted, downVoted]);
 
   return (
     <>

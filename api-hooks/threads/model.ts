@@ -51,6 +51,19 @@ export type CommentInputType = {
   content: string;
 };
 
+export type CommentType = {
+  id: string;
+  content: string;
+  createdAt: string;
+  owner: {
+    id: string;
+    name: string;
+    avatar: string;
+  };
+  upVotesBy: string[];
+  downVotesBy: string[];
+};
+
 export enum VoteTypeEnum {
   UP = "up-vote",
   DOWN = "down-vote",

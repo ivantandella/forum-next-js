@@ -33,6 +33,21 @@ async function voteThread(threadId: string, action: VoteTypeEnum) {
   return res.data;
 }
 
+async function voteComment(
+  threadId: string,
+  commentId: string,
+  action: VoteTypeEnum
+) {
+  const res = await axios.post(
+    `${BASE_URL}/threads/${threadId}/comments/${commentId}/${action}`,
+    {},
+    {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    }
+  );
+  return res.data;
+}
+
 export function useCreateThread() {
   return useMutation({
     mutationFn: (data: CreateThreadInputType) => {
@@ -53,6 +68,14 @@ export function useVoteThread(threadId: string) {
   return useMutation({
     mutationFn: (action: VoteTypeEnum) => {
       return voteThread(threadId, action);
+    },
+  });
+}
+
+export function useVoteComment(threadId: string, commentId: string) {
+  return useMutation({
+    mutationFn: (action: VoteTypeEnum) => {
+      return voteComment(threadId, commentId, action);
     },
   });
 }

@@ -62,7 +62,11 @@ export default function DetailThread() {
               </Title>
               {threadData.comments.length > 0 &&
                 threadData.comments.map((comment) => (
-                  <CommentCard key={comment.id} comment={comment} />
+                  <CommentCard
+                    key={comment.id}
+                    comment={comment}
+                    threadId={threadData.id}
+                  />
                 ))}
             </Card>
           </>
