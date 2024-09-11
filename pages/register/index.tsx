@@ -85,7 +85,10 @@ export default function RegisterPage() {
             />
             <Title>Register</Title>
             <Text size="sm">
-              Already have an account? <Link href={LOGIN_PATH}>Login</Link>
+              Already have an account?{" "}
+              <Link href={LOGIN_PATH} className="link">
+                Login
+              </Link>
             </Text>
             <TextInput
               label="Name"

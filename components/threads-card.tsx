@@ -31,10 +31,7 @@ export default function ThreadsCard(props: ThreadsCardPropsType) {
 
   return (
     <Card withBorder mb={10} w={400} shadow="sm">
-      <Link
-        href={`/threads/${id}`}
-        style={{ textDecoration: "none", color: "black" }}
-      >
+      <Link href={`/threads/${id}`} className="link">
         <Flex direction={"row"} justify={"space-between"} align={"center"}>
           <Author name={author?.name} avatar={author?.avatar} />
 
@@ -53,9 +50,12 @@ export default function ThreadsCard(props: ThreadsCardPropsType) {
         <Group gap={2}>
           <IconThumbDown /> {downVotesBy.length || "0"}
         </Group>
-        <Group gap={2}>
-          <IconMessage /> {totalComments || "0"}
-        </Group>
+        <Link href={`/threads/${id}`} className="link">
+          <Group gap={2}>
+            <IconMessage />
+            {totalComments || "0"}
+          </Group>
+        </Link>
       </Group>
     </Card>
   );

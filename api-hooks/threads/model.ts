@@ -46,3 +46,7 @@ export type DetailThreadType = {
   upVotesBy: string[];
   downVotesBy: string[];
 };
+
+export type CommentInputType = {
+  content: string;
+};

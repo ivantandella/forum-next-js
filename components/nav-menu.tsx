@@ -12,7 +12,7 @@ type NavMenuPropsType = {
 export default function NavMenu(props: NavMenuPropsType) {
   const { name, href, children } = props;
   return (
-    <Link href={href} style={{ textDecoration: "none" }}>
+    <Link href={href} className="link">
       <Flex mx={20} align={"center"} direction={"column"}>
         {children}
         <Text c={"white"}>{name}</Text>

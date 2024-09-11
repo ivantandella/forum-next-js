@@ -23,7 +23,7 @@ export default function CommentCard(props: CommentCardPropsType) {
   const { comment } = props;
 
   return (
-    <Card key={comment.id} withBorder w={"100%"} shadow="sm">
+    <Card key={comment.id} withBorder w={"100%"} shadow="sm" mb={10}>
       <Author name={comment.owner.name} avatar={comment.owner.avatar}>
         <Text size="sm">({timeAgo(comment.createdAt)})</Text>
       </Author>

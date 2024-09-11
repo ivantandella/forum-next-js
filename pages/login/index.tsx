@@ -83,7 +83,10 @@ export default function LoginPage() {
             />
             <Title>Login</Title>
             <Text size="sm">
-              Don't have an account? <Link href={REGISTER_PATH}>Register</Link>
+              Don't have an account?{" "}
+              <Link href={REGISTER_PATH} className="link">
+                Register
+              </Link>
             </Text>
             <TextInput
               label="Email"
