@@ -14,7 +14,7 @@ import { CreateThreadInputType } from "../../api-hooks/threads/model";
 import { useRouter } from "next/router";
 import { notifications } from "@mantine/notifications";
 import { useEffect } from "react";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../hooks/use-auth";
 
 export default function AddThread() {
   const { mutateAsync, isPending } = useCreateThread();

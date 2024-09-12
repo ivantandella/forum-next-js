@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import {
   DANGER_COLOR,
+  HOME_PATH,
   LOGIN_PATH,
   PRIMARY_COLOR_1,
   PRIMARY_COLOR_2,
@@ -126,6 +127,11 @@ export default function RegisterPage() {
             >
               Register
             </Button>
+            <Link href={HOME_PATH} style={{ width: "100%" }}>
+              <Button variant="outline" color={PRIMARY_COLOR_1} w={"100%"}>
+                Continue without account
+              </Button>
+            </Link>
           </Flex>
         </form>
       </Card>

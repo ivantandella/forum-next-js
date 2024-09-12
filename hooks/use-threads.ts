@@ -10,7 +10,7 @@ import {
   SUCCESS_COLOR,
 } from "../utils/constants";
 import { threadsKey } from "../api-hooks/threads/query";
-import { useAuth } from "./auth";
+import { useAuth } from "./use-auth";
 import { useGetMe } from "../api-hooks/auth/query";
 
 export function useThreads(id: string) {

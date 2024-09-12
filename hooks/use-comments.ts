@@ -11,7 +11,7 @@ import {
   SUCCESS_COLOR,
 } from "../utils/constants";
 import { threadsKey } from "../api-hooks/threads/query";
-import { useAuth } from "./auth";
+import { useAuth } from "./use-auth";
 
 export function useComment(threadId: string, comment: CommentType) {
   const { mutateAsync, isPending } = useVoteComment(threadId, comment.id);

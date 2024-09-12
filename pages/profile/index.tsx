@@ -18,7 +18,7 @@ import {
   REGISTER_PATH,
 } from "../../utils/constants";
 import { modals } from "@mantine/modals";
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../hooks/use-auth";
 import { useEffect, useState } from "react";
 import { getToken } from "../../utils/token";
 import IconUserCircle from "../../components/icons/icon-user-circle";
