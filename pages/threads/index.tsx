@@ -15,11 +15,13 @@ import { useRouter } from "next/router";
 import { notifications } from "@mantine/notifications";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
+import { useResponsive } from "../../hooks/use-responsive";
 
 export default function AddThread() {
   const { mutateAsync, isPending } = useCreateThread();
   const { push } = useRouter();
   const { checkLogin } = useAuth();
+  const { elemWidth } = useResponsive();
 
   useEffect(() => {
     checkLogin();
@@ -68,7 +70,7 @@ export default function AddThread() {
   return (
     <>
       <Flex justify={"center"} align={"center"} mih={"100vh"} p={20}>
-        <Card withBorder w={400} mb={80} shadow="sm">
+        <Card withBorder w={elemWidth} mb={80} shadow="sm">
           <form
             onSubmit={form.onSubmit((values) => handleCreateThread(values))}
           >

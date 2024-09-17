@@ -24,12 +24,14 @@ import { getToken } from "../../utils/token";
 import IconUserCircle from "../../components/icons/icon-user-circle";
 import { useGetMe } from "../../api-hooks/auth/query";
 import { UserType } from "../../api-hooks/auth/model";
+import { useResponsive } from "../../hooks/use-responsive";
 
 export default function ProfilePage() {
   const { handleLogout } = useAuth();
   const [isLogin, setIsLogin] = useState(false);
   const { data, isLoading } = useGetMe();
   const userData: UserType = data?.data?.user || {};
+  const { elemWidth } = useResponsive();
 
   useEffect(() => {
     if (getToken()) {
@@ -57,7 +59,7 @@ export default function ProfilePage() {
         {isLoading ? (
           <Loader />
         ) : (
-          <Card withBorder w={400} mb={80} shadow="sm">
+          <Card withBorder w={elemWidth} mb={80} shadow="sm">
             <Flex direction={"column"} align={"center"}>
               {isLogin ? (
                 <>

@@ -23,8 +23,10 @@ import { RegisterDataType } from "../../api-hooks/auth/model";
 import { useRegister } from "../../api-hooks/auth/mutation";
 import { notifications } from "@mantine/notifications";
 import { useRouter } from "next/router";
+import { useResponsive } from "../../hooks/use-responsive";
 
 export default function RegisterPage() {
+  const { elemWidth } = useResponsive();
   const { mutateAsync, isPending } = useRegister();
   const { push } = useRouter();
 
@@ -72,7 +74,7 @@ export default function RegisterPage() {
 
   return (
     <Flex justify={"center"} align={"center"} mih={"100vh"} bg={"gray"}>
-      <Card withBorder radius={"md"} w={"30%"} my={10}>
+      <Card withBorder radius={"md"} w={elemWidth} my={10}>
         <form
           onSubmit={form.onSubmit((values) => handleSubmitRegister(values))}
         >

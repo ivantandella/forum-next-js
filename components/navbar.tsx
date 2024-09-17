@@ -14,13 +14,10 @@ import IconUser from "./icons/icon-user";
 import IconSocial from "./icons/icon-social";
 import IconAward from "./icons/icon-award";
 import IconPlus from "./icons/icon-plus";
+import { useMediaQuery } from "@mantine/hooks";
 
 export default function Navbar() {
-  // const menus = [{
-  //   icon: <IconHome />,
-  //   href: HOME_PATH,
-  //   name:"Home"
-  // }]
+  const isMobile = useMediaQuery(`(max-width: 400px)`);
   return (
     <Flex
       style={{
@@ -31,7 +28,7 @@ export default function Navbar() {
       pos={"fixed"}
       bottom={0}
       direction={"row"}
-      gap={"lg"}
+      gap={isMobile ? "xs" : "lg"}
       justify={"center"}
       align={"center"}
     >

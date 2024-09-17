@@ -7,6 +7,8 @@ import { UserType } from "../api-hooks/auth/model";
 import Link from "next/link";
 import Author from "./author";
 import ThreadAction from "./thread-action";
+import { useMediaQuery } from "@mantine/hooks";
+import { useResponsive } from "../hooks/use-responsive";
 
 interface ThreadsCardPropsType {
   data: ThreadType;
@@ -26,9 +28,10 @@ export default function ThreadsCard(props: ThreadsCardPropsType) {
   const { data } = useGetAllUsers();
   const usersData: UserType[] = data?.data?.users || [];
   const author = usersData.find((user) => user.id === ownerId);
+  const { elemWidth } = useResponsive();
 
   return (
-    <Card withBorder mb={10} w={400} shadow="sm">
+    <Card withBorder mb={10} w={elemWidth} shadow="sm">
       <Link href={`/threads/${id}`} className="link">
         <Flex direction={"row"} justify={"space-between"} align={"center"}>
           <Author name={author?.name} avatar={author?.avatar} />

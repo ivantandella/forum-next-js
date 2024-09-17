@@ -8,12 +8,15 @@ import CommentCard from "../../components/comment-card";
 import Author from "../../components/author";
 import CommentForm from "../../components/comment-form";
 import ThreadAction from "../../components/thread-action";
+import { useMediaQuery } from "@mantine/hooks";
 
 export default function DetailThread() {
   const { query } = useRouter();
   const id = query.id as string;
   const { data, isLoading } = useGetDetailThread(id);
   const threadData: DetailThreadType = data?.data?.detailThread || {};
+  const matches = useMediaQuery(`(min-width: 640px)`);
+  const detailWidth = matches ? 600 : 350;
 
   return (
     <>
@@ -29,15 +32,22 @@ export default function DetailThread() {
           <Loader />
         ) : (
           <>
-            <Card w={600}>
-              <Flex
-                direction={"row"}
-                justify={"space-between"}
-                align={"center"}
-              >
-                <Title order={4}>{threadData.title}</Title>
-                <Text size="sm">{timeAgo(threadData.createdAt)}</Text>
-              </Flex>
+            <Card w={detailWidth}>
+              {matches ? (
+                <Flex
+                  direction={"row"}
+                  justify={"space-between"}
+                  align={"center"}
+                >
+                  <Title order={4}>{threadData.title}</Title>
+                  <Text size="sm">{timeAgo(threadData.createdAt)}</Text>
+                </Flex>
+              ) : (
+                <>
+                  <Title order={4}>{threadData.title}</Title>
+                  <Text size="sm">{timeAgo(threadData.createdAt)}</Text>
+                </>
+              )}
               <Author
                 name={threadData.owner.name}
                 avatar={threadData.owner.avatar}
@@ -56,7 +66,7 @@ export default function DetailThread() {
               <CommentForm threadId={threadData.id} />
             </Card>
 
-            <Card w={600}>
+            <Card w={detailWidth}>
               <Title order={3} mb={10}>
                 Comments ({threadData.comments.length})
               </Title>

@@ -23,8 +23,11 @@ import { useLogin } from "../../api-hooks/auth/mutation";
 import { LoginDataType } from "../../api-hooks/auth/model";
 import { useRouter } from "next/navigation";
 import { notifications } from "@mantine/notifications";
+import { useMediaQuery } from "@mantine/hooks";
+import { useResponsive } from "../../hooks/use-responsive";
 
 export default function LoginPage() {
+  const { elemWidth } = useResponsive();
   const { mutateAsync, isPending } = useLogin();
   const { push } = useRouter();
 
@@ -71,7 +74,7 @@ export default function LoginPage() {
 
   return (
     <Flex justify={"center"} align={"center"} mih={"100vh"} bg={"gray"}>
-      <Card withBorder radius={"md"} w={"30%"} my={10}>
+      <Card withBorder radius={"md"} w={elemWidth} my={10}>
         <form onSubmit={form.onSubmit((values) => handleSubmitLogin(values))}>
           <Flex direction={"column"} gap={"md"} align={"center"}>
             <Image

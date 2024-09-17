@@ -6,11 +6,13 @@ import { UserType } from "../../api-hooks/auth/model";
 import { paginate } from "../../utils/paginate";
 import IconSearch from "../../components/icons/icon-search";
 import { useState } from "react";
+import { useResponsive } from "../../hooks/use-responsive";
 
 export default function CommunityPage() {
   const { data, isLoading } = useGetAllUsers();
   const usersData: UserType[] = paginate(data?.data?.users || [], 100, 1);
   const [search, setSearch] = useState<string>("");
+  const { elemWidth } = useResponsive();
 
   const filteredUsers = usersData.filter((user) => {
     return user.name.toLowerCase().includes(search.toLowerCase());
@@ -30,7 +32,7 @@ export default function CommunityPage() {
           placeholder="Search..."
           rightSection={<IconSearch />}
           rightSectionPointerEvents="none"
-          w={400}
+          w={elemWidth}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
